@@ -1,5 +1,7 @@
-   c = getchar();
-    c = getc(stdin);
+caracter = getchar();
+    caracter = getchar(stdin);
 
        printf("Character entered: ");
-       putchar(c);
+       putchar(caracter);
+
+

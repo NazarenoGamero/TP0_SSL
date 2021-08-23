@@ -1,32 +1,52 @@
 #include "scanner.h"
 
-void get_token(){
-    char texto_entrada_txt[100];
-    strcpy(texto_entrada_txt,"   uno,dos,     ,785");
-    strcat(texto_entrada_txt,"\n");
-    strcat(texto_entrada_txt,"+*@#$a3  ultimo");
-    printf("%s\n",texto_entrada_txt);
-    
-    printf("antes getchar\n");
-
-    char c = getchar();
-    printf("despues getchar\n");
-    
-        
-    
-    
-    char c;
-    char texto[100];
-    strcpy(texto, "");
-    while(c != 'X'){
-        printf("Enter character: ");
-        c = getchar();
-        printf("Character entered: ");
-        putchar(c);
-
-        strcat(texto, c);
+int tipo_token(char caracter){
+    if(caracter == EOF){ 
+        return FDT;
+    }else if (caracter == ','){
+        return SEP;
+    }else if (caracter == '\n' || caracter == ' '){
+        return 4; //no usé enum (aunque hubiera sido más claro) porque la consigna dice que el enum es solo para SEP,CAD y FDT.
     }
 
-printf("%s",texto);
+    return CAD;
+}
 
+void get_token(){
+    char palabra[100];
+    palabra[0]='\0';
+    int indice = 0;
+
+    char caracter = getchar();
+    int token = tipo_token(caracter);
+    
+    while(token != FDT){
+        if(isspace(caracter) == 0){
+            palabra[indice] = caracter;  
+            indice++;
+        }
+ 
+        if(token == SEP){
+            palabra[indice - 1] = '\0';
+            imprimir_cadena(palabra, &indice);
+            printf("Separador: ,\n");
+        }else if(token == 4){
+            imprimir_cadena(palabra, &indice);
+        }
+
+        caracter = getchar();
+        token = tipo_token(caracter);
+    }
+
+    palabra[indice] = '\0';
+    printf("Cadena: %s\n", palabra);
+    printf("Fin De Texto: \n");
+}
+
+void imprimir_cadena(char* palabra, int* indice){
+    if(strncmp(palabra, "\0", 1) != 0){ //hay algun caracter en la palabra
+        printf("Cadena: %s\n", palabra);
+    }
+    *indice = 0;
+    palabra[0] = '\0';
 }
