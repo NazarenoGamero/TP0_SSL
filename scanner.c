@@ -13,8 +13,8 @@ int get_token(char caracter){
 }
 
 void imprimir_cadena(char* palabra, int* indice){
-    if(isspace(palabra) == 0){ //hay algun caracter en la palabra
-        printf("Cadena: %s\n", palabra);
+    if(strncmp(palabra, "\0", 1) != 0){ //hay algun caracter en la palabra
+        printf("Cadena: %s \n", palabra);
     }
     *indice = 0;
     palabra[0] = '\0';
