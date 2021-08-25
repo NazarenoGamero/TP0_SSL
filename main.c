@@ -24,7 +24,9 @@ int main(){
         caracter = getchar();
         token = get_token(caracter);
     }
-    
+
+    palabra[indice] = '\0';
+    printf("Cadena: %s\n", palabra);
     printf("Fin De Texto: \n");
 
     return 0;
