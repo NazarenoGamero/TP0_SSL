@@ -1,15 +1,23 @@
 #include "scanner.h"
+extern int token;
+extern char palabra[100];
+extern int indice;
+extern char caracter;
 
 int get_token(char caracter){
+   
     if(caracter == EOF){ 
-        return FDT;
+            return FDT;
     }else if (caracter == ','){
-        return SEP;
+            return SEP;
     }else if(isspace(caracter) != 0){
-        return 4; //no usé enum (aunque hubiera sido más claro) porque la consigna dice que el enum es solo para SEP,CAD y FDT.
-    }
-
-    return CAD;
+            return 4; 
+    }else{
+        palabra[indice] = caracter;  
+        indice++;
+        return CAD;
+        
+}
 }
 
 void imprimir_cadena(char* palabra, int* indice){
