@@ -14,5 +14,5 @@ enum tokens{
 
 int get_token(char caracter);
 void imprimir_cadena(char* palabra, int* indice);
-
+void recibirToken();
 #endif // SCANNER_H_INCLUDED

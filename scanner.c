@@ -28,3 +28,7 @@ void imprimir_cadena(char* palabra, int* indice){
     *indice = 0;
     palabra[0] = '\0';
 }
+void recibirToken(){
+        caracter = getchar();
+        token = get_token(caracter);
+}
