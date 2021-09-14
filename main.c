@@ -8,10 +8,7 @@ int token;
 int main(){    
     palabra[0]='\0';
 
-    caracter = getchar();
-    token = get_token(caracter);
-
-    while(token != FDT){
+    for((caracter = getchar(),token = get_token(caracter));token != FDT;(caracter = getchar(),token = get_token(caracter))){
     if(token == SEP){
         imprimir_cadena(palabra, &indice);
         printf("Separador: ,\n");
